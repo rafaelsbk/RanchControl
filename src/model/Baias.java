@@ -2,7 +2,7 @@ package model;
 
 public class Baias {
 	private String nomeBaia;
-	private String capacidade;
+	private int capacidade;
 	private String definicao;
 	private String funcionarioResponsavel;
 	
@@ -12,10 +12,11 @@ public class Baias {
 	public void setNomeBaia(String nomeBaia) {
 		this.nomeBaia = nomeBaia;
 	}
-	public String getCapacidade() {
+	
+	public int getCapacidade() {
 		return capacidade;
 	}
-	public void setCapacidade(String capacidade) {
+	public void setCapacidade(int capacidade) {
 		this.capacidade = capacidade;
 	}
 	public String getDefinicao() {
