@@ -10,6 +10,7 @@ public class Animal {
 	private String vacina;
 	private String observacoes;
 	private float mediaPeso;
+	
 	public int getIdAnimal() {
 		return idAnimal;
 	}
