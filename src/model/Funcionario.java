@@ -1,6 +1,7 @@
 package model;
 
 public class Funcionario {
+	private int idFuncionario;
 	private String nome;
 	private String funcao;
 	
@@ -15,5 +16,11 @@ public class Funcionario {
 	}
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
+	}
+	public int getIdFuncionario() {
+		return idFuncionario;
+	}
+	public void setIdFuncionario(int idFuncionario) {
+		this.idFuncionario = idFuncionario;
 	}
 }
