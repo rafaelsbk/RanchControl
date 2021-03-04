@@ -1,10 +1,18 @@
 package model;
 
 public class Baias {
+	private int idBaia;
 	private String nomeBaia;
 	private int capacidade;
 	private String definicao;
 	private String funcionarioResponsavel;
+	
+	public int getidBaia() {
+		return idBaia;
+	}
+	public void setidBaia(int idBaia) {
+		this.idBaia = idBaia;
+	}
 	
 	public String getNomeBaia() {
 		return nomeBaia;
