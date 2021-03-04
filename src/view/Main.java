@@ -22,7 +22,7 @@ public class Main {
 
         // Declaracao de variaveis para controle do menu op= menu principal opSec= menu
         // secundario
-        int op, opSec, tempId;
+        int op, opSec, tempId, opEdit;
         String tempNome;
 
         do {
@@ -130,7 +130,7 @@ public class Main {
                     switch (opSec) {
                         // Falta completar o processo lógico
                         case 1: // Editar funcionario
-                            System.out.println("Digite o nome do Funcionário que você deseja editar");
+                            System.out.println("Digite o id do Funcionário que você deseja editar");
 
                             System.out.println("Usuários cadastros até o momento:");
                             for (int i = 0; i < arrayFuncionarios.size(); i++) {
@@ -140,7 +140,35 @@ public class Main {
                             System.out.println("Diga o Id do funcionário que deseja editar:");
                             tempId = teclado.nextInt();
 
-                            // continuar edição
+                            System.out.println("-------------------------------");
+                            System.out.println("O que deseja editar?");
+                            System.out.println("1- Nome do funcionário");
+                            System.out.println("2- Funcao do funcionário");
+                            opEdit = teclado.nextInt();
+                            switch (opEdit) {
+                                case 1:
+                                    System.out.println("Digite o nome do usuário");
+                                    for (int i = 0; i < arrayFuncionarios.size(); i++) {
+                                        if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
+                                            String tempEdit1 = teclado.next();
+                                            arrayFuncionarios.get(i).setNome(tempEdit1);
+                                        }
+                                    }
+                                    break;
+
+                                case 2:
+                                    System.out.println("Digite a função do usuário");
+                                    for (int i = 0; i < arrayFuncionarios.size(); i++) {
+                                        if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
+                                            String tempEdit2 = teclado.next();
+                                            arrayFuncionarios.get(i).setFuncao(tempEdit2);
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
 
                             break;
 
@@ -156,7 +184,57 @@ public class Main {
                             System.out.println("Diga o Id do Baia que deseja editar:");
                             tempId = teclado.nextInt();
 
-                            // continuar edição
+                            System.out.println("-------------------------------");
+                            System.out.println("O que deseja editar?");
+                            System.out.println("1- Nome da baia");
+                            System.out.println("2- Capacidade da baia");
+                            System.out.println("3- Definição da baia");
+                            System.out.println("4- Funcionário responsávle");
+                            opEdit = teclado.nextInt();
+                            switch (opEdit) {
+                                case 1:
+                                    System.out.println("Digite o nome da baia");
+                                    for (int i = 0; i < arrayBaias.size(); i++) {
+                                        if (arrayBaias.get(i).getidBaia() == tempId) {
+                                            String tempEdit1 = teclado.next();
+                                            arrayBaias.get(i).setNomeBaia(tempEdit1);
+                                        }
+                                    }
+                                    break;
+
+                                case 2:
+                                    System.out.println("Digite a capacidade da baia");
+                                    for (int i = 0; i < arrayBaias.size(); i++) {
+                                        if (arrayBaias.get(i).getidBaia() == tempId) {
+                                            int tempEdit2 = teclado.nextInt();
+                                            arrayBaias.get(i).setCapacidade(tempEdit2);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    System.out.println("Digite a definição da baia");
+                                    for (int i = 0; i < arrayBaias.size(); i++) {
+                                        if (arrayBaias.get(i).getidBaia() == tempId) {
+                                            String tempEdit3 = teclado.next();
+                                            arrayBaias.get(i).setDefinicao(tempEdit3);
+                                        }
+                                    }
+                                    break;
+                                case 4:
+                                    System.out.println("Digite o funcionário responsável");
+                                    for (int i = 0; i < arrayBaias.size(); i++) {
+                                        if (arrayBaias.get(i).getidBaia() == tempId) {
+                                            String tempEdit4 = teclado.next();
+                                            arrayBaias.get(i).setFuncionarioResponsavel(tempEdit4);
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                            break;
 
                         case 3:// Editar da animal
                             System.out.println("Digite o nome do Animal que você deseja editar");
@@ -198,7 +276,7 @@ public class Main {
                             break;
 
                         case 2:// Consultar baia
-                        System.out.println("Digite o id da baia que você deseja consultar");
+                            System.out.println("Digite o id da baia que você deseja consultar");
 
                             System.out.println("Baias cadastrada até o momento:");
                             for (int i = 0; i < arrayFuncionarios.size(); i++) {
@@ -254,7 +332,7 @@ public class Main {
 
                         case 2:// Editar da baia
 
-                        System.out.println("Digite o id do Funcionário que você deseja excluir");
+                            System.out.println("Digite o id do Funcionário que você deseja excluir");
 
                             System.out.println("Baias cadastradas até o momento:");
                             for (int i = 0; i < arrayBaias.size(); i++) {
