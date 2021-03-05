@@ -189,7 +189,7 @@ public class Main {
                             System.out.println("1- Nome da baia");
                             System.out.println("2- Capacidade da baia");
                             System.out.println("3- Definição da baia");
-                            System.out.println("4- Funcionário responsávle");
+                            System.out.println("4- Funcionário responsável");
                             opEdit = teclado.nextInt();
                             switch (opEdit) {
                                 case 1:
@@ -244,9 +244,79 @@ public class Main {
                                 System.out.print(arrayAnimal.get(i).getNomeAnimal() + "   id: ");
                                 System.out.println(arrayAnimal.get(i).getIdAnimal());
                             }
-                            System.out.println("Diga o Id do Baia que deseja editar:");
+                            System.out.println("Diga o Id do animal que deseja editar:");
                             tempId = teclado.nextInt();
-                            // continuar edição
+
+                            System.out.println("-------------------------------");
+                            System.out.println("O que deseja editar?");
+                            System.out.println("1- Nome do animal");
+                            System.out.println("2- Tipo do animal");
+                            System.out.println("3- Idade do animal");
+                            System.out.println("4- Peso do animal");
+                            System.out.println("5- Animal vacinado ou não");
+                            System.out.println("6- Observações do animal");
+
+                            opEdit = teclado.nextInt();
+                            switch (opEdit) {
+                                case 1:
+                                    System.out.println("Digite o nome do animal");
+                                    for (int i = 0; i < arrayAnimal.size(); i++) {
+                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
+                                            String tempEdit1 = teclado.next();
+                                            arrayAnimal.get(i).setNomeAnimal(tempEdit1);
+                                        }
+                                    }
+                                    break;
+
+                                case 2:
+                                    System.out.println("Digite o novo tipo do animal");
+                                    for (int i = 0; i < arrayAnimal.size(); i++) {
+                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
+                                            String tempEdit2 = teclado.next();
+                                            arrayAnimal.get(i).setTipoAnimal(tempEdit2);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    System.out.println("Digite a nova idade do animal");
+                                    for (int i = 0; i < arrayAnimal.size(); i++) {
+                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
+                                            int tempEdit3 = teclado.nextInt();
+                                            arrayAnimal.get(i).setIdadeAnimal(tempEdit3);
+                                        }
+                                    }
+                                    break;
+                                case 4:
+                                    System.out.println("Digite o novo peso do animal");
+                                    for (int i = 0; i < arrayAnimal.size(); i++) {
+                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
+                                            int tempEdit3 = teclado.nextInt();
+                                            arrayAnimal.get(i).setPeso(tempEdit3);
+                                        }
+                                    }
+                                    break;
+                                case 5:
+                                    System.out.println("Animal vacinado ou não?");
+                                    for (int i = 0; i < arrayAnimal.size(); i++) {
+                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
+                                            String tempEdit3 = teclado.next();
+                                            arrayAnimal.get(i).setVacina(tempEdit3);
+                                        }
+                                    }
+                                    break;
+                                case 6:
+                                    System.out.println("Diga as novas observações?");
+                                    for (int i = 0; i < arrayAnimal.size(); i++) {
+                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
+                                            String tempEdit3 = teclado.next();
+                                            arrayAnimal.get(i).setVacina(tempEdit3);
+                                        }
+                                    }
+                                    break;           
+
+                                default:
+                                    break;
+                            }
                     }
 
                     break;
@@ -261,9 +331,7 @@ public class Main {
                     opSec = teclado.nextInt();
 
                     switch (opSec) {
-                        // Falta completar o processo lógico
                         case 1: // Consultar funcionario
-                            System.out.println("Digite o nome do funcionario que você deseja consultar");
 
                             System.out.println("Usuários cadastros até o momento:");
                             for (int i = 0; i < arrayFuncionarios.size(); i++) {
@@ -272,6 +340,13 @@ public class Main {
                             }
                             System.out.println("Diga o Id do funcionário que deseja consultar:");
                             tempId = teclado.nextInt();
+                            
+                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
+                                if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
+                                    System.out.println("Nome: "+ arrayFuncionarios.get(i).getNome());
+                                    System.out.println("Função: "+ arrayFuncionarios.get(i).getFuncao()); 
+                                }
+                            }
 
                             break;
 
