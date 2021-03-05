@@ -5,7 +5,7 @@ public class Baias {
 	private String nomeBaia;
 	private int capacidade;
 	private String definicao;
-	private String funcionarioResponsavel;
+	private int idFuncionarioResponsavel;
 	
 	public int getidBaia() {
 		return idBaia;
@@ -33,10 +33,12 @@ public class Baias {
 	public void setDefinicao(String definicao) {
 		this.definicao = definicao;
 	}
-	public String getFuncionarioResponsavel() {
-		return funcionarioResponsavel;
+	
+	public int getIdFuncionarioResponsavel(){
+		return idFuncionarioResponsavel;
 	}
-	public void setFuncionarioResponsavel(String funcionarioResponsavel) {
-		this.funcionarioResponsavel = funcionarioResponsavel;
-	}
-}
+
+	public void setIdFuncionarioResponsavel(int idFuncionarioResponsavel){
+		this.idFuncionarioResponsavel = idFuncionarioResponsavel;
+	}   
+} 
