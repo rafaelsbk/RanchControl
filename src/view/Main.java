@@ -11,9 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        Animal p1 = new Animal();
-        Baias b1 = new Baias();
-        Funcionario f1 = new Funcionario();
 
         // arraylist's
         ArrayList<Funcionario> arrayFuncionarios = new ArrayList<>();
@@ -39,6 +36,7 @@ public class Main {
 
             switch (op) {
                 case 1:
+                	
                     System.out.println("1 - Cadastrar Funcionario");
                     System.out.println("2 - Cadastrar Baia/Confinamento");
                     System.out.println("3 - Cadastrar Animal");
@@ -49,6 +47,7 @@ public class Main {
 
                     switch (opSec) {
                         case 1: // Cadastro do funcionario
+                        	Funcionario f1 = new Funcionario();
                             System.out.println("Digite o nome do funcionario");
                             f1.setNome(teclado.next());
 
@@ -62,6 +61,7 @@ public class Main {
                             break;
 
                         case 2:// Cadastro da baia
+                        	Baias b1 = new Baias();
                             System.out.println("Digite o nome da Baia ou Caracteristica");
                             b1.setNomeBaia(teclado.next());
 
@@ -88,6 +88,7 @@ public class Main {
                             break;
 
                         case 3:// Cadastro do animal
+                        	Animal p1 = new Animal();
                             System.out.println("Digite o nome do Animal");
                             p1.setNomeAnimal(teclado.next());
 
@@ -207,7 +208,7 @@ public class Main {
                                     }
                                     break;
                                 case 3:
-                                    System.out.println("Digite a definição da baia");
+                                    System.out.println("Digite a defini�o da baia");
                                     for (int i = 0; i < arrayBaias.size(); i++) {
                                         if (arrayBaias.get(i).getidBaia() == tempId) {
                                             String tempEdit3 = teclado.next();
