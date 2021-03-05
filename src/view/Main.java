@@ -348,7 +348,7 @@ case 3:
                             System.out.println("Usuários cadastros até o momento:");
                             for (int i = 0; i < arrayFuncionarios.size(); i++) {
                             	System.out.println("ID: " + arrayFuncionarios.get(i).getIdFuncionario());
-                                System.out.print("Nome: " + arrayFuncionarios.get(i).getNome());
+                                System.out.println("Nome: " + arrayFuncionarios.get(i).getNome());
                             }
                             System.out.println("Diga o Id do funcionário que deseja consultar:");
                             tempId = teclado.nextInt();
@@ -367,7 +367,7 @@ case 3:
                             System.out.println("Baias cadastradas até o momento:");
                             for (int i = 0; i < arrayBaias.size(); i++) {
                             	System.out.println("ID: " + arrayBaias.get(i).getidBaia());
-                            	System.out.print("Nome: " + arrayBaias.get(i).getNomeBaia());
+                            	System.out.println("Nome: " + arrayBaias.get(i).getNomeBaia());
                             }
                             System.out.println("Diga o Id da baia que deseja consultar:");
                             tempId = teclado.nextInt();
@@ -389,7 +389,7 @@ case 3:
                             System.out.println("Animais cadastrados até o momento:");
                             for (int i = 0; i < arrayAnimal.size(); i++) {
                             	System.out.println("ID: " + arrayAnimal.get(i).getIdAnimal());
-                                System.out.print("Nome: " + arrayAnimal.get(i).getNomeAnimal());
+                                System.out.println("Nome: " + arrayAnimal.get(i).getNomeAnimal());
                             }
                             System.out.println("Diga o Id do animal que deseja consultar:");
                             tempId = teclado.nextInt();
@@ -458,6 +458,7 @@ case 3:
                                     arrayBaias.remove(i);
                                 }
                             }
+                            break;
 
                         case 3:// Excluir Animal
                             System.out.println("Digite o nome do Animal que você deseja excluir");
