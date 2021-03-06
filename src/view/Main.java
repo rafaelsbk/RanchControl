@@ -35,14 +35,14 @@ public class Main {
             System.out.println("-----------------------------------");
             System.out.println("Escolha a opcao desejada: ");
             op = teclado.nextInt();
-
+           
             switch (op) {
 case 1:
                 	
                     System.out.println("1 - Cadastrar Funcionario");
                     System.out.println("2 - Cadastrar Baia/Confinamento");
                     System.out.println("3 - Cadastrar Animal");
-                    System.out.println("Digite qualquer tecla para retornar");
+                    System.out.println("4 - Retornar para o menu anterior");
                     System.out.println("-----------------------------------");
                     System.out.println("Escolha a informacao que deseja CADASTRAR. ");
                     opSec = teclado.nextInt();
@@ -142,7 +142,7 @@ case 1:
                             System.out.println("Qual a especie?");
                             p1.setTipoAnimal(teclado.next());
 
-                            System.out.println("O animal Ã© vacinado?");
+                            System.out.println("O animal é vacinado?");
                             p1.setVacina(teclado.next());
 
                             System.out.println("Qual o peso do animal?");
@@ -152,7 +152,7 @@ case 1:
                             arrayAnimal.add(p1);
                             System.out.println("Animal Cadastrado com Sucesso!");                         
                             break;
-                       default:
+                        case 4:
                         	System.out.println("Retornando ao menu principal");
                         	break;
                     }                  
@@ -162,7 +162,7 @@ case 2:
                     System.out.println("1 - Editar Funcionario");
                     System.out.println("2 - Editar Baia/Confinamento");
                     System.out.println("3 - Editar Animal");
-                    System.out.println("Digite qualquer tecla para retornar");
+                    System.out.println("4 - Retornar para o menu anterior");
                     System.out.println("-----------------------------------");
                     System.out.println("Escolha a informacao que deseja EDITAR. ");
                     opSec = teclado.nextInt();
@@ -207,6 +207,7 @@ case 2:
                                     break;
 
                                 default:
+                                	System.out.println("Digite a opçao correta, Tente novamente!");
                                     break;
                             }
 
@@ -308,6 +309,7 @@ case 2:
                             System.out.println("3- Idade do animal");
                             System.out.println("4- Peso do animal");
                             System.out.println("5- Animal vacinado ou nao");
+                            System.out.println("6- Retornar ao menu principal");
 
                             opEdit = teclado.nextInt();
                             switch (opEdit) {
@@ -358,20 +360,17 @@ case 2:
                                     }
                                     break;
                                 
-                                default:
+                                case 6:
                                 	System.out.println("Retornando ao menu principal");
                                 	break;
                             }
                     }
-					default:
-					System.out.println("Retornando ao menu principal...");
-                    break;
 
 case 3:
                     System.out.println("1 - Consultar Funcionario");
                     System.out.println("2 - Consultar Baia/Confinamento");
                     System.out.println("3 - Consultar Animal");
-                    System.out.println("Precione qualquer tecla para retornar");
+                    System.out.println("4 - Retornar para o menu anterior");
                     System.out.println("-----------------------------------");
                     System.out.println("Escolha a informacao que deseja CONSULTAR. ");
                     opSec = teclado.nextInt();
@@ -440,7 +439,7 @@ case 3:
                             }
 
                             break;
-                        default:
+                        case 4:
                         	System.out.println("Retornando ao menu principal");
 							break;
                     }
@@ -451,13 +450,12 @@ case 4:
                     System.out.println("1 - Excluir Funcionario");
                     System.out.println("2 - Excluir Baia/Confinamento");
                     System.out.println("3 - Excluir Animal");
-                    System.out.println("Precione qualquer tecla para retornar");
+                    System.out.println("4 - Retornar para o menu anterior");
                     System.out.println("-----------------------------------");
                     System.out.println("Escolha a informacao que deseja EXCLUIR. ");
                     opSec = teclado.nextInt();
 
                     switch (opSec) {
-                        // Falta completar o processo logico
                         case 1: // Excluir funcionario
                             System.out.println("Digite o id do Funcionario que voce deseja excluir");
 
@@ -512,16 +510,21 @@ case 4:
                                     arrayAnimal.remove(i);
                                 }
                             }
-                        default:
+                        case 4:
 							System.out.println("Retornando ao menu principal");
 								break;
                     }
+
                     break;
 case 5:
 	System.out.println("Saindo do sistema...");
 	return;
+
+default:
+	System.out.println("Opcao invalida, digite a opcao correta!");
+	break;
             }
-            
         } while (op != 5);
     }
 }
+    
