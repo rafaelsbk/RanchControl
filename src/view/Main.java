@@ -90,7 +90,7 @@ case 1:
             					}
             				}
             				if(buscador) {
-            					System.out.println("Funcionario com esse nome ja cadastrado "+nomeTeste);
+            					System.out.println("Baia ja cadastrado com esse nome "+nomeTeste);
             					System.out.println("Retornando para o menu inicial...");
             					break;
             				} 
@@ -119,8 +119,22 @@ case 1:
 
                         case 3:// Cadastro do animal
                         	Animal p1 = new Animal();
+                        	buscador = false;
                             System.out.println("Digite o nome do Animal");
                             p1.setNomeAnimal(teclado.next());
+                            nomeTeste = p1.getNomeAnimal();
+                            if(!arrayAnimal.isEmpty()) {
+            					for(int i=0; i<arrayAnimal.size(); i++) {
+            						if(arrayAnimal.get(i).getNomeAnimal().equals(nomeTeste)) {
+            							buscador = true;
+            						}
+            					}
+            				}
+            				if(buscador) {
+            					System.out.println("Animal ja cadastrado com esse nome "+nomeTeste);
+            					System.out.println("Retornando para o menu inicial...");
+            					break;
+            				}
 
                             System.out.println("Qual a idade do animal?");
                             p1.setIdadeAnimal(teclado.nextInt());
