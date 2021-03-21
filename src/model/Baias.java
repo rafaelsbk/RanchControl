@@ -1,14 +1,29 @@
 package model;
 
+
 public class Baias {
 	private int idBaia;
 	private String nomeBaia;
 	private int capacidade;
 	private String definicao;
 	private int idFuncionarioResponsavel;
+	private int idAnimalBaia;
+	private Animal animal;
 	
+	public int getIdAnimalBaia() {
+		return idAnimalBaia;
+	}
+	public void setIdAnimalBaia(int idAnimalBaia) {
+		this.idAnimalBaia = idAnimalBaia;
+	}
 	public int getidBaia() {
 		return idBaia;
+	}
+	public Animal getAnimal() {
+		return animal;
+	}
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 	public void setidBaia(int idBaia) {
 		this.idBaia = idBaia;

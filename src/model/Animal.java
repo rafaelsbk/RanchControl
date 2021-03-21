@@ -5,9 +5,43 @@ public class Animal {
 	private String tipoAnimal;
 	private String nomeAnimal;
 	private int idadeAnimal;
-	private float peso;
-	private float pesoEvolucao;
+	private float peso1;
+	private float peso2;
+	private float peso3;
+	private float peso4;
+	private float peso5;
 	private String vacina;
+	
+	public float getPeso1() {
+		return peso1;
+	}
+	public void setPeso1(float peso1) {
+		this.peso1 = peso1;
+	}
+	public float getPeso2() {
+		return peso2;
+	}
+	public void setPeso2(float peso2) {
+		this.peso2 = peso2;
+	}
+	public float getPeso3() {
+		return peso3;
+	}
+	public void setPeso3(float peso3) {
+		this.peso3 = peso3;
+	}
+	public float getPeso4() {
+		return peso4;
+	}
+	public void setPeso4(float peso4) {
+		this.peso4 = peso4;
+	}
+	public float getPeso5() {
+		return peso5;
+	}
+	public void setPeso5(float peso5) {
+		this.peso5 = peso5;
+	}
 	private String observacoes;
 	private float mediaPeso;
 	
@@ -34,18 +68,6 @@ public class Animal {
 	}
 	public void setIdadeAnimal(int idadeAnimal) {
 		this.idadeAnimal = idadeAnimal;
-	}
-	public float getPeso() {
-		return peso;
-	}
-	public void setPeso(float peso) {
-		this.peso = peso;
-	}
-	public float getPesoEvolucao() {
-		return pesoEvolucao;
-	}
-	public void setPesoEvolucao(float pesoEvolucao) {
-		this.pesoEvolucao = pesoEvolucao;
 	}
 	public String getVacina() {
 		return vacina;
