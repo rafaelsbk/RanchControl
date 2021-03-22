@@ -5,18 +5,19 @@ public class Animal {
 	private String tipoAnimal;
 	private String nomeAnimal;
 	private int idadeAnimal;
-	private float peso1;
+	private float pesoAnimal;
 	private float peso2;
 	private float peso3;
 	private float peso4;
 	private float peso5;
 	private String vacina;
 	
-	public float getPeso1() {
-		return peso1;
+
+	public float getPesoAnimal() {
+		return pesoAnimal;
 	}
-	public void setPeso1(float peso1) {
-		this.peso1 = peso1;
+	public void setPesoAnimal(float pesoAnimal) {
+		this.pesoAnimal = pesoAnimal;
 	}
 	public float getPeso2() {
 		return peso2;

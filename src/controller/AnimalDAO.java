@@ -1,52 +1,34 @@
 package controller;
 
+//import java.lang.System.Logger.Level;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 import model.Animal;
-import model.Baias;
-import model.Funcionario;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Connection;
-import controller.Connect;
 
 public class AnimalDAO {
+	public void adicionar(Animal animal) {
 	
-	private Connect minhaConexao;
-
-    private final String RELATORIOGERAL = "select * from \"Contato\"";
-    
-    private final String BUSCAR = "select * from \"Contato\" where \"id\"=?";
-    
-    private final String RELATORIOESPECIFICO = "select * from \"Contato\" "
-            + "where \"telefone\"=?";
-    
-    private final String INCLUIR = "insert into \"Animal\" (\"idAnimal\", \"nomeAnimal\", "
-            + "\"tipoAnimal\") values (?, ?, ?, ?)";
-    private final String EXCLUIR = "delete from \"Contato\" where \"id\"=?";
-    private final String ALTERAR = "update \"Contato\" set \"id\"=?, \"nome\"=?, "
-            + "\"telefone\"=?, \"email\"=? where \"id\"=?";
-    
-    public AnimalDAO(){
-        minhaConexao = new Connect ("jdbc:sqlserver://localhost:1433;db_RanchControl;sa;123", ALTERAR, ALTERAR);
-    }								
-    public void inclusao(Animal c){
-        try{
-            minhaConexao.conectar();
-            PreparedStatement instrucao =
-                  minhaConexao.getConexao().prepareStatement(INCLUIR);
-            instrucao.setInt(1, c.getIdAnimal());
-            instrucao.setString(2, c.getNomeAnimal());
-            instrucao.setString(3, c.getTipoAnimal());
-            instrucao.setInt(4, c.getIdadeAnimal());
-            instrucao.execute();
-            minhaConexao.desconectar();
-            //o erro é esse aqui, o pq so deus sabe!
-            //Eu Acho que ele ta passando da conexao e parando na inclusao
-        }catch(Exception e){
-            System.out.println("Erro na inclusão: "+e.getMessage());
-        }
-    }    	
-    
+		Connection con = Connect.getConnetion();
+		PreparedStatement pstm = null;
+		
+				try { 
+					//String sql = "INSERT INTO Animal (idAnimal, nomeAnimal, tipoAnimal) VALUES (?,?);";
+					pstm = con.prepareStatement("INSERT INTO Animal (nomeAnimal, idadeAnimal, tipoAnimal, pesoAnimal) VALUES (?,?,?,?);");
+					pstm.setString(1, animal.getNomeAnimal());
+					pstm.setInt(2, animal.getIdadeAnimal());
+					pstm.setString(3, animal.getTipoAnimal());
+					pstm.setFloat(4, animal.getPesoAnimal());
+					pstm.execute();
+					JOptionPane.showMessageDialog(null, "Adicionado com Sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+				} catch (SQLException ErroSql) {
+					JOptionPane.showMessageDialog(null, "Erro ao Adicionar no banco.", "Erro", JOptionPane.ERROR_MESSAGE);
+				}
+		
+		
+	
 	}
+	
+} 

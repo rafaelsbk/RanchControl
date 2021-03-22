@@ -123,8 +123,8 @@ case 1:
                         case 3:// Cadastro do animal
                         	c = new Animal();
                         	buscador = false;
-                        	System.out.println("Digite o ID do Animal");
-                            c.setIdAnimal(teclado.nextInt());
+                        	//System.out.println("Digite o ID do Animal");
+                            //c.setIdAnimal(teclado.nextInt());
                             
                             System.out.println("Digite o nome do Animal");
                             c.setNomeAnimal(teclado.next());
@@ -138,12 +138,9 @@ case 1:
                             //System.out.println("O animal é vacinado?");
                             //c.setVacina(teclado.next());
 
-                            //System.out.println("Qual o peso do animal?");
-                            //c.setPeso1(teclado.nextFloat());
-                            cA.inclusao(c);
-                            //c.setIdAnimal(arrayBaias.size());
-                            //arrayAnimal.add(p1);
-                            System.out.println("Animal Cadastrado com Sucesso!");                         
+                            System.out.println("Qual o peso do animal?");
+                            c.setPesoAnimal(teclado.nextFloat());
+                            cA.adicionar(c);                        
                             break;
                         case 4:
                         	System.out.println("Retornando ao menu principal");
@@ -290,7 +287,7 @@ case 2:
                                 System.out.print(arrayAnimal.get(i).getNomeAnimal() + " Tipo: ");
                                 System.out.println(arrayAnimal.get(i).getTipoAnimal());
                                 System.out.println("Idade: " + arrayAnimal.get(i).getIdadeAnimal());
-                                System.out.println("Peso " + arrayAnimal.get(i).getPeso1());
+                                System.out.println("Peso " + arrayAnimal.get(i).getPesoAnimal());
                                 System.out.println("Peso " + arrayAnimal.get(i).getPeso2());
                                 System.out.println("Peso " + arrayAnimal.get(i).getPeso3());
                                 System.out.println("Peso " + arrayAnimal.get(i).getPeso4());
@@ -345,7 +342,7 @@ case 2:
                                     for (int i = 0; i < arrayAnimal.size(); i++) {
                                         if (arrayAnimal.get(i).getIdAnimal() == tempId) {
                                             int tempEdit3 = teclado.nextInt();
-                                            arrayAnimal.get(i).setPeso1(tempEdit3);
+                                            arrayAnimal.get(i).setPesoAnimal(tempEdit3);
                                         }
                                     }
                                     break;
@@ -431,7 +428,7 @@ case 3:
                                 if (arrayAnimal.get(i).getIdAnimal() == tempId) {
                                     System.out.println("Nome: "+ arrayAnimal.get(i).getNomeAnimal());
                                     System.out.println("Tipo: "+ arrayAnimal.get(i).getTipoAnimal()); 
-                                    System.out.println("Peso: "+ arrayAnimal.get(i).getPeso1());
+                                    System.out.println("Peso: "+ arrayAnimal.get(i).getPesoAnimal());
                                     System.out.println("Vacinado: "+ arrayAnimal.get(i).getVacina());
                                     System.out.println("Idade: "+ arrayAnimal.get(i).getIdadeAnimal());
                                 }
