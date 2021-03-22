@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.Animal;
 import model.Baias;
 import model.Funcionario;
+import controller.AnimalDAO; 
 
 public class Main {
 
@@ -21,6 +22,7 @@ public class Main {
         int op, opSec = 0, tempId, opEdit, tempId2;
         boolean buscador;
         Animal  c;
+        AnimalDAO cA = new AnimalDAO();
         String nomeTeste;
         
         do {
@@ -121,21 +123,24 @@ case 1:
                         case 3:// Cadastro do animal
                         	c = new Animal();
                         	buscador = false;
+                        	System.out.println("Digite o ID do Animal");
+                            c.setIdAnimal(teclado.nextInt());
+                            
                             System.out.println("Digite o nome do Animal");
                             c.setNomeAnimal(teclado.next());
 
                             System.out.println("Qual a idade do animal?");
                             c.setIdadeAnimal(teclado.nextInt());
-
+                            
                             System.out.println("Qual a especie?");
                             c.setTipoAnimal(teclado.next());
 
-                            System.out.println("O animal é vacinado?");
-                            c.setVacina(teclado.next());
+                            //System.out.println("O animal é vacinado?");
+                            //c.setVacina(teclado.next());
 
-                            System.out.println("Qual o peso do animal?");
-                            c.setPeso1(teclado.nextFloat());
-
+                            //System.out.println("Qual o peso do animal?");
+                            //c.setPeso1(teclado.nextFloat());
+                            cA.inclusao(c);
                             //c.setIdAnimal(arrayBaias.size());
                             //arrayAnimal.add(p1);
                             System.out.println("Animal Cadastrado com Sucesso!");                         

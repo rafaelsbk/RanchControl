@@ -22,26 +22,28 @@ public class AnimalDAO {
     private final String RELATORIOESPECIFICO = "select * from \"Contato\" "
             + "where \"telefone\"=?";
     
-    private final String INCLUIR = "insert into \"Contato\" (\"id\", \"nome\", "
-            + "\"telefone\", \"email\") values (?, ?, ?, ?)";
+    private final String INCLUIR = "insert into \"Animal\" (\"idAnimal\", \"nomeAnimal\", "
+            + "\"tipoAnimal\") values (?, ?, ?, ?)";
     private final String EXCLUIR = "delete from \"Contato\" where \"id\"=?";
     private final String ALTERAR = "update \"Contato\" set \"id\"=?, \"nome\"=?, "
             + "\"telefone\"=?, \"email\"=? where \"id\"=?";
     
     public AnimalDAO(){
-        minhaConexao = new Connect ("jdbc:sqlserver://localhost:1433/db_RanchControl","sa","123");
-    }
+        minhaConexao = new Connect ("jdbc:sqlserver://localhost:1433;db_RanchControl;sa;123", ALTERAR, ALTERAR);
+    }								
     public void inclusao(Animal c){
         try{
             minhaConexao.conectar();
-            PreparedStatement instrucao = 
-                    minhaConexao.getConexao().prepareStatement(INCLUIR);
+            PreparedStatement instrucao =
+                  minhaConexao.getConexao().prepareStatement(INCLUIR);
             instrucao.setInt(1, c.getIdAnimal());
             instrucao.setString(2, c.getNomeAnimal());
             instrucao.setString(3, c.getTipoAnimal());
             instrucao.setInt(4, c.getIdadeAnimal());
             instrucao.execute();
             minhaConexao.desconectar();
+            //o erro é esse aqui, o pq so deus sabe!
+            //Eu Acho que ele ta passando da conexao e parando na inclusao
         }catch(Exception e){
             System.out.println("Erro na inclusão: "+e.getMessage());
         }

@@ -11,7 +11,7 @@ public class Connect {
 	private String caminho;
     private String usuario;
     private String senha;
-    private Connection aPropriaConexao;
+    private Connection con;
     
     public Connect(String c, String u, String s){
         caminho = c;
@@ -22,19 +22,21 @@ public class Connect {
     public void conectar(){
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //carregar o driver
-            aPropriaConexao = DriverManager.getConnection(caminho, usuario, senha); //abrir a conexão
+            String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+            		   "databaseName=db_RanchControl;user=sa;password=123;";  
+            		Connection con = DriverManager.getConnection(connectionUrl);
         }catch(Exception e){
             System.out.println("Erro na conexão: "+e.getMessage());
         }
     }
     public void desconectar(){
         try{
-        	aPropriaConexao.close();
+        	con.close();
         }catch(Exception e){
             System.out.println("Erro na desconexão: "+e.getMessage());
         }
     }
     public Connection getConexao(){
-        return aPropriaConexao;
+        return con;
     }
 }
