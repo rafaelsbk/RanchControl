@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import model.Animal;
 
 public class AnimalDAO {
-///////////////////////   INSERT: OK   //////////////////////
+///////////////////////   INSERT   //////////////////////
 	public void adicionar(Animal animal) {
 	
 		Connection con = Connect.getConnetion();
@@ -32,7 +32,7 @@ public class AnimalDAO {
 					Connect.closeConnection(con,pstm);
 				}			
 	}
-///////////////////////   UPDATE OK  //////////////////////
+///////////////////////   UPDATE  ///////////////////////
 	public void alterar (Animal animal) {
 		Connection con = Connect.getConnetion();
 		PreparedStatement pstm = null;
@@ -51,8 +51,9 @@ public class AnimalDAO {
 					Connect.closeConnection(con,pstm);
 				}				
 	}
-///////////////////////   SELECT: OK   //////////////////////
+///////////////////////   SELECT   //////////////////////
 	public List<Animal> listar(){
+
 		
 		List<Animal> animais = new ArrayList<>();
 		
@@ -81,4 +82,21 @@ public class AnimalDAO {
 		
 		return animais;
 	}
+///////////////////////   DELETE   //////////////////////
+	public void remover(Animal animal) {
+		Connection con = Connect.getConnetion();
+		PreparedStatement pstm;
+		try {
+		pstm = con.prepareStatement("DELETE FROM Animal where idAnimal=?");
+		pstm.setInt(1,animal.getIdAnimal());
+		pstm.execute();
+		JOptionPane.showMessageDialog(null, "Removido com sucesso: ", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		} catch (SQLException ErroSql) {
+			JOptionPane.showMessageDialog(null, "Erro ao Remover: " + ErroSql, "Erro", JOptionPane.ERROR_MESSAGE);
+		}finally{
+			Connect.closeConnection(con);
+		}
+			
+	}
+	
 }

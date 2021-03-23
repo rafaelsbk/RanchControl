@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 import model.Animal;
 import model.Baias;
@@ -20,9 +19,10 @@ public class Main {
         ArrayList<Baias> arrayBaias = new ArrayList<>();
         
         // Declaracao de variaveis para controle do menu op= menu principal opSec= menu
-        int op, opSec = 0, tempId, opEdit, tempId2;
+        int op, opSec = 0, tempId, opEdit;
         boolean buscador;
         Animal  c;
+        Baias b;
         AnimalDAO cA = new AnimalDAO();
         BaiasDAO bA = new BaiasDAO();
         String nomeTeste;
@@ -178,76 +178,40 @@ case 2:
                                     break;                           
                                     
                         case 2:// Editar da baia
-
+                        	b = new Baias();
                             System.out.println("Digite o nome do Baia que voce deseja editar");
 
                             System.out.println("Baias cadastradas ate o momento:");
-                            for (int i = 0; i < arrayBaias.size(); i++) {
-                                System.out.print(" - " + arrayBaias.get(i).getNomeBaia() + " id: ");
-                                System.out.print(arrayBaias.get(i).getidBaia() + " Capacidade: ");
-                                System.out.println(arrayBaias.get(i).getCapacidade()+ "Definicao: ");
-                                System.out.println(arrayBaias.get(i).getDefinicao());
-                                System.out.println("Definicao: " + arrayBaias.get(i).getIdFuncionarioResponsavel());
-                                
+                            for (int i=0; i < bA.listar().size(); i++) {
+                                System.out.print("ID: " + bA.listar().get(i).getidBaia() + " Nome Baia: ");
+                          	   System.out.print(bA.listar().get(i).getNomeBaia() + " Definicao: ");
+                          	   System.out.println(bA.listar().get(i).getDefinicao());
+                          	   System.out.print("Capacidade: " + bA.listar().get(i).getCapacidade() + " Func.Resp: ");
+                          	   System.out.println(bA.listar().get(i).getIdFuncionarioResponsavel());
+                          	   System.out.println("----------------------------------------------");                         	                          	   
                             }
                             System.out.println("Diga o Id do Baia que deseja editar:");
                             tempId = teclado.nextInt();
+                            b.setidBaia(tempId);
+                            
+                            System.out.println("Digite o nome da Baia ou Caracteristica");
+                            b.setNomeBaia(teclado.next());
+                            
+                            System.out.println("Qual a capacidade de animais?");
+                            b.setCapacidade(teclado.nextInt()); 
+                            
+                            System.out.println("Qual a finalidade ou especificao");
+                            b.setDefinicao(teclado.next());
+                                                                            
+                           
+                            //System.out.println("Escolha o id do funcionario responsavel pela baia.");
+                            //System.out.println("Usuarios cadastros ate o momento:");
 
-                            System.out.println("-------------------------------");
-                            System.out.println("O que deseja editar?");
-                            System.out.println("1- Nome da baia");
-                            System.out.println("2- Capacidade da baia");
-                            System.out.println("3- Definicao da baia");
-                            System.out.println("4- Funcionário responsável");
-                            opEdit = teclado.nextInt();
-                            switch (opEdit) {
-                                case 1:
-                                    System.out.println("Digite o nome da baia");
-                                    for (int i = 0; i < arrayBaias.size(); i++) {
-                                        if (arrayBaias.get(i).getidBaia() == tempId) {
-                                            String tempEdit1 = teclado.next();
-                                            arrayBaias.get(i).setNomeBaia(tempEdit1);
-                                        }
-                                    }
-                                    break;
-
-                                case 2:
-                                    System.out.println("Digite a capacidade da baia");
-                                    for (int i = 0; i < arrayBaias.size(); i++) {
-                                        if (arrayBaias.get(i).getidBaia() == tempId) {
-                                            int tempEdit2 = teclado.nextInt();
-                                            arrayBaias.get(i).setCapacidade(tempEdit2);
-                                        }
-                                    }
-                                    break;
-                                case 3:
-                                    System.out.println("Digite a defini�o da baia");
-                                    for (int i = 0; i < arrayBaias.size(); i++) {
-                                        if (arrayBaias.get(i).getidBaia() == tempId) {
-                                            String tempEdit3 = teclado.next();
-                                            arrayBaias.get(i).setDefinicao(tempEdit3);
-                                        }
-                                    }
-                                    break;
-                                case 4:
-                                    System.out.println("Digite o id do funcionario responsavel");                              
-                                    System.out.println("Usuarios cadastros ate o momento:");
-                                    for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                        System.out.print(arrayFuncionarios.get(i).getNome() + "   id: ");
-                                        System.out.println(arrayFuncionarios.get(i).getIdFuncionario());
-                                    }
-                                    for (int i = 0; i < arrayBaias.size(); i++) {
-                                        if (arrayBaias.get(i).getidBaia() == tempId) {
-                                            int tempEdit4 = teclado.nextInt();
-                                            arrayBaias.get(i).setIdFuncionarioResponsavel(tempEdit4);
-                                        }
-                                    }
-                                    break;
-
-                                default:
-                  
-                                    break;                           
-                            }
+                            System.out.println("Diga o Id do funcionario:");
+                            b.setIdFuncionarioResponsavel(teclado.nextInt());                                                     
+                            bA.alterar(b);
+                            break;
+                            
                         	case 3:// Editar da animal
                         	c = new Animal();
                             System.out.println("Digite o nome do Animal que voce deseja editar");
@@ -276,9 +240,7 @@ case 2:
                             c.setPesoAnimal(teclado.nextFloat());
                             cA.alterar(c);                                 
                             break;
-        }
-            }	
-            	 
+        }            	 
 case 3:
                     System.out.println("1 - Consultar Funcionario");
                     System.out.println("2 - Consultar Baia/Confinamento");
@@ -309,23 +271,28 @@ case 3:
 
                             break;
 
-                        case 2:// Consultar baia
+                        case 2:// Consultar baia - COMPLEMENTAR A BUSCA COM OS ANIMAIS NA BAIA
                             System.out.println("Baias cadastradas ate o momento:");
-                            for (int i = 0; i < arrayBaias.size(); i++) {
-                            	System.out.println("ID: " + arrayBaias.get(i).getidBaia());
-                            	System.out.println("Nome: " + arrayBaias.get(i).getNomeBaia());
-                            }
+                            for (int i=0; i < bA.listar().size(); i++) {
+                               System.out.print("ID: " + bA.listar().get(i).getidBaia() + " Nome Baia: ");
+                         	   System.out.print(bA.listar().get(i).getNomeBaia() + " Definicao: ");
+                         	   System.out.println(bA.listar().get(i).getDefinicao());
+                         	   System.out.print("Capacidade: " + bA.listar().get(i).getCapacidade() + " Func.Resp: ");
+                         	   System.out.println(bA.listar().get(i).getIdFuncionarioResponsavel());
+                         	   System.out.println("----------------------------------------------");                         	                          	   
+                              }
                             System.out.println("Diga o Id da baia que deseja consultar:");
                             tempId = teclado.nextInt();
                             
-                            for (int i = 0; i < arrayBaias.size(); i++) {
+                            for (int i = 0; i < bA.listar().size(); i++) {
                                 
-                                if (arrayBaias.get(i).getidBaia() == tempId) {
-                                	 System.out.println("ID: " + arrayBaias.get(i).getidBaia());
-                                	 System.out.println("Nome: " + arrayBaias.get(i).getNomeBaia());                                     
-                                     System.out.println("Capacidade: " + arrayBaias.get(i).getCapacidade());
-                                     System.out.println("Definicao: " + arrayBaias.get(i).getDefinicao());
-                                     System.out.println("Funcionario responsavel:" + arrayBaias.get(i).getIdFuncionarioResponsavel());
+                                if (bA.listar().get(i).getidBaia() == tempId) {
+                                	System.out.print("ID: " + bA.listar().get(i).getidBaia() + " Nome Baia: ");
+                                	System.out.print(bA.listar().get(i).getNomeBaia() + " Definicao: ");
+                                	System.out.println(bA.listar().get(i).getDefinicao());
+                                	System.out.print("Capacidade: " + bA.listar().get(i).getCapacidade() + " Func.Resp: ");
+                                	System.out.println(bA.listar().get(i).getIdFuncionarioResponsavel());
+                                	System.out.println("----------------------------------------------");  
                                 }
                             }
                             break;
@@ -377,40 +344,39 @@ case 4:
                             break;
 
                         case 2:// Excluir baia
-
-                            System.out.println("Digite o id da baia que voce deseja excluir");
-
-                            System.out.println("Baias cadastradas ate o momento:");
-                            for (int i = 0; i < arrayBaias.size(); i++) {
-                                System.out.print(arrayBaias.get(i).getNomeBaia() + "   id: ");
-                                System.out.println(arrayBaias.get(i).getidBaia());
-                            }
-                            System.out.println("Diga o Id do Baia que deseja excluir:");
+                        	Baias b1 = new Baias();
+                            System.out.println("Digite o nome do Animal que voce deseja excluir");
+                            System.out.println("Animais cadastrados ate o momento:");
+                            for (int i=0; i < bA.listar().size(); i++) {
+                            	   System.out.print("ID: " + bA.listar().get(i).getidBaia() + " Nome Baia: ");
+                            	   System.out.print(bA.listar().get(i).getNomeBaia() + " Definicao: ");
+                            	   System.out.println(bA.listar().get(i).getDefinicao());
+                            	   System.out.print("Capacidade: " + bA.listar().get(i).getCapacidade() + " Func.Resp: ");
+                            	   System.out.println(bA.listar().get(i).getIdFuncionarioResponsavel());
+                            	   System.out.println("----------------------------------------------");                          	                          	   
+                               }
+                            System.out.println("Diga o Id da Baia que deseja excluir:");
                             tempId = teclado.nextInt();
-
-                            for (int i = 0; i < arrayBaias.size(); i++) {
-                                if (arrayBaias.get(i).getidBaia() == tempId) {
-                                    arrayBaias.remove(i);
-                                }
-                            }
+                            b1.setidBaia(tempId);
+                            bA.remover(b1);
                             break;
 
                         case 3:// Excluir Animal
+                        	c = new Animal();
                             System.out.println("Digite o nome do Animal que voce deseja excluir");
-
                             System.out.println("Animais cadastrados ate o momento:");
-                            for (int i = 0; i < arrayAnimal.size(); i++) {
-                                System.out.print(arrayAnimal.get(i).getNomeAnimal() + "   id: ");
-                                System.out.println(arrayAnimal.get(i).getIdAnimal());
-                            }
+                            for (int i=0; i < cA.listar().size(); i++) {
+                         	   System.out.print("ID: " + cA.listar().get(i).getIdAnimal() + " Nome: ");
+                         	   System.out.print(cA.listar().get(i).getNomeAnimal() + " Idade: ");
+                         	   System.out.print(cA.listar().get(i).getIdadeAnimal() + " Tipo: ");
+                         	   System.out.print(cA.listar().get(i).getTipoAnimal() + " Peso: ");
+                         	   System.out.println(cA.listar().get(i).getPesoAnimal());
+                         	   
+                            };  
                             System.out.println("Diga o Id do animal que deseja excluir:");
                             tempId = teclado.nextInt();
-                            
-                            for (int i = 0; i < arrayAnimal.size(); i++) {
-                                if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                    arrayAnimal.remove(i);
-                                }
-                            }
+                            c.setIdAnimal(tempId);
+                            cA.remover(c);
                         case 4:
 							System.out.println("Retornando ao menu principal");
 								break;
@@ -446,7 +412,7 @@ case 5:
                             	System.out.println("Nome: " + arrayBaias.get(i).getNomeBaia());
                             }
                     		System.out.println("Digite o ID da baia.");
-                    		tempId2 = teclado.nextInt();
+                    		//tempId2 = teclado.nextInt();
                     		for (int i = 0; i < arrayAnimal.size(); i++) {
                                 if (arrayBaias.get(i).getIdAnimalBaia() == tempId) {                                       
                                 	arrayBaias.get(i).setAnimal(arrayAnimal.get(i));
