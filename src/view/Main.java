@@ -6,7 +6,8 @@ import java.util.Scanner;
 import model.Animal;
 import model.Baias;
 import model.Funcionario;
-import controller.AnimalDAO; 
+import persistence.AnimalDAO; 
+import persistence.BaiasDAO;
 
 public class Main {
 
@@ -23,6 +24,7 @@ public class Main {
         boolean buscador;
         Animal  c;
         AnimalDAO cA = new AnimalDAO();
+        BaiasDAO bA = new BaiasDAO();
         String nomeTeste;
         
         do {
@@ -84,60 +86,35 @@ case 1:
                         	buscador = false;
                             System.out.println("Digite o nome da Baia ou Caracteristica");
                             b1.setNomeBaia(teclado.next());
-                            nomeTeste = b1.getNomeBaia();
-                            if(!arrayBaias.isEmpty()) {
-            					for(int i=0; i<arrayBaias.size(); i++) {
-            						if(arrayBaias.get(i).getNomeBaia().equals(nomeTeste)) {
-            							buscador = true;
-            						}
-            					}
-            				}
-            				if(buscador) {
-            					System.out.println("Baia ja cadastrado com esse nome "+nomeTeste);
-            					System.out.println("Retornando para o menu inicial...");
-            					break;
-            				} 
+                            
+                            System.out.println("Qual a finalidade ou especificao");
+                            b1.setDefinicao(teclado.next());
+                            
                             System.out.println("Qual a capacidade de animais?");
                             b1.setCapacidade(teclado.nextInt());
                            
+                            //System.out.println("Escolha o id do funcionario responsavel pela baia.");
+                            //System.out.println("Usuarios cadastros ate o momento:");
 
-                            System.out.println("Qual a finalidade ou especificao");
-                            b1.setDefinicao(teclado.next());
-
-                            System.out.println("Escolha o id do funcionario responsavel pela baia.");
-                            System.out.println("Usuarios cadastros ate o momento:");
-                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                System.out.print(arrayFuncionarios.get(i).getNome() + "   id: ");
-                                System.out.println(arrayFuncionarios.get(i).getIdFuncionario());
-                            }
                             System.out.println("Diga o Id:");
                             tempId = teclado.nextInt();
                             b1.setIdFuncionarioResponsavel(tempId);
 
-                            b1.setidBaia(arrayBaias.size());
-                            arrayBaias.add(b1);
+                            bA.adicionar(b1);
                             System.out.println("Baia cadastrada com sucesso!");
-
                             break;
 
                         case 3:// Cadastro do animal
                         	c = new Animal();
-                        	buscador = false;
-                        	//System.out.println("Digite o ID do Animal");
-                            //c.setIdAnimal(teclado.nextInt());
+                        	System.out.println("Qual a especie?");
+                            c.setTipoAnimal(teclado.next());
                             
                             System.out.println("Digite o nome do Animal");
                             c.setNomeAnimal(teclado.next());
 
                             System.out.println("Qual a idade do animal?");
-                            c.setIdadeAnimal(teclado.nextInt());
-                            
-                            System.out.println("Qual a especie?");
-                            c.setTipoAnimal(teclado.next());
-
-                            //System.out.println("O animal é vacinado?");
-                            //c.setVacina(teclado.next());
-
+                            c.setIdadeAnimal(teclado.nextInt());                                                      
+                          
                             System.out.println("Qual o peso do animal?");
                             c.setPesoAnimal(teclado.nextFloat());
                             cA.adicionar(c);                        
@@ -195,14 +172,11 @@ case 2:
                                         }
                                     }
                                     break;
-
+                            }
                                 default:
                                 	System.out.println("Digite a opçao correta, Tente novamente!");
-                                    break;
-                            }
-
-                            break;
-
+                                    break;                           
+                                    
                         case 2:// Editar da baia
 
                             System.out.println("Digite o nome do Baia que voce deseja editar");
@@ -272,96 +246,39 @@ case 2:
 
                                 default:
                   
-                                    break;
+                                    break;                           
                             }
-
-                            break;
-
                         	case 3:// Editar da animal
+                        	c = new Animal();
                             System.out.println("Digite o nome do Animal que voce deseja editar");
-
                             System.out.println("Animal cadastrados ate o momento:");
-                            for (int i = 0; i < arrayAnimal.size(); i++) {
-                            	System.out.println("---------------------------------------------------");
-                                System.out.print("ID: " + arrayAnimal.get(i).getIdAnimal() + " Nome: ");
-                                System.out.print(arrayAnimal.get(i).getNomeAnimal() + " Tipo: ");
-                                System.out.println(arrayAnimal.get(i).getTipoAnimal());
-                                System.out.println("Idade: " + arrayAnimal.get(i).getIdadeAnimal());
-                                System.out.println("Peso " + arrayAnimal.get(i).getPesoAnimal());
-                                System.out.println("Peso " + arrayAnimal.get(i).getPeso2());
-                                System.out.println("Peso " + arrayAnimal.get(i).getPeso3());
-                                System.out.println("Peso " + arrayAnimal.get(i).getPeso4());
-                                System.out.println("Peso " + arrayAnimal.get(i).getPeso5());
-                                System.out.println("Vacina: " + arrayAnimal.get(i).getVacina());
-                                System.out.println("---------------------------------------------------");
+                            for (int i=0; i < cA.listar().size(); i++) {
+                         	   System.out.print("ID: " + cA.listar().get(i).getIdAnimal() + " Nome: ");
+                         	   System.out.print(cA.listar().get(i).getNomeAnimal() + " Idade: ");
+                         	   System.out.print(cA.listar().get(i).getIdadeAnimal() + " Tipo: ");
+                         	   System.out.print(cA.listar().get(i).getTipoAnimal() + " Peso: ");
+                         	   System.out.println(cA.listar().get(i).getPesoAnimal());
+                         	   
                             }
                             System.out.println("Diga o Id do animal que deseja editar:");
                             tempId = teclado.nextInt();
+                            c.setIdAnimal(tempId);
+                        	System.out.println("Qual a especie?");
+                            c.setTipoAnimal(teclado.next());
+                            
+                            System.out.println("Digite o nome do Animal");
+                            c.setNomeAnimal(teclado.next());
 
-                            System.out.println("-------------------------------");
-                            System.out.println("O que deseja editar?");
-                            System.out.println("1- Nome do animal");
-                            System.out.println("2- Tipo do animal");
-                            System.out.println("3- Idade do animal");
-                            System.out.println("4- Peso do animal");
-                            System.out.println("5- Animal vacinado ou nao");
-                            System.out.println("6- Retornar ao menu principal");
-
-                            opEdit = teclado.nextInt();
-                            switch (opEdit) {
-                                case 1:
-                                    System.out.println("Digite o nome do animal");
-                                    for (int i = 0; i < arrayAnimal.size(); i++) {
-                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                            String tempEdit1 = teclado.next();
-                                            arrayAnimal.get(i).setNomeAnimal(tempEdit1);
-                                        }
-                                    }
-                                    break;
-
-                                case 2:
-                                    System.out.println("Digite o novo tipo do animal");
-                                    for (int i = 0; i < arrayAnimal.size(); i++) {
-                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                            String tempEdit2 = teclado.next();
-                                            arrayAnimal.get(i).setTipoAnimal(tempEdit2);
-                                        }
-                                    }
-                                    break;
-                                case 3:
-                                    System.out.println("Digite a nova idade do animal");
-                                    for (int i = 0; i < arrayAnimal.size(); i++) {
-                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                            int tempEdit3 = teclado.nextInt();
-                                            arrayAnimal.get(i).setIdadeAnimal(tempEdit3);
-                                        }
-                                    }
-                                    break;
-                                case 4:
-                                    System.out.println("Digite o novo peso do animal");
-                                    for (int i = 0; i < arrayAnimal.size(); i++) {
-                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                            int tempEdit3 = teclado.nextInt();
-                                            arrayAnimal.get(i).setPesoAnimal(tempEdit3);
-                                        }
-                                    }
-                                    break;
-                                case 5:
-                                    System.out.println("Animal vacinado ou nao?");
-                                    for (int i = 0; i < arrayAnimal.size(); i++) {
-                                        if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                            String tempEdit3 = teclado.next();
-                                            arrayAnimal.get(i).setVacina(tempEdit3);
-                                        }
-                                    }
-                                    break;
-                                
-                                case 6:
-                                	System.out.println("Retornando ao menu principal");
-                                	break;
-                            }
-                    }
-
+                            System.out.println("Qual a idade do animal?");
+                            c.setIdadeAnimal(teclado.nextInt());                                                      
+                          
+                            System.out.println("Qual o peso do animal?");
+                            c.setPesoAnimal(teclado.nextFloat());
+                            cA.alterar(c);                                 
+                            break;
+        }
+            }	
+            	 
 case 3:
                     System.out.println("1 - Consultar Funcionario");
                     System.out.println("2 - Consultar Baia/Confinamento");
@@ -411,29 +328,17 @@ case 3:
                                      System.out.println("Funcionario responsavel:" + arrayBaias.get(i).getIdFuncionarioResponsavel());
                                 }
                             }
-
                             break;
-
                         case 3:// Consultar animal
-                            System.out.println("Animais cadastrados ate o momento:");
-                            for (int i = 0; i < arrayAnimal.size(); i++) {
-                            	System.out.println("ID: " + arrayAnimal.get(i).getIdAnimal());
-                                System.out.println("Nome: " + arrayAnimal.get(i).getNomeAnimal());
-                            }
-                            System.out.println("Diga o Id do animal que deseja consultar:");
-                            tempId = teclado.nextInt();
-                            
-                            for (int i = 0; i < arrayAnimal.size(); i++) {
-                                
-                                if (arrayAnimal.get(i).getIdAnimal() == tempId) {
-                                    System.out.println("Nome: "+ arrayAnimal.get(i).getNomeAnimal());
-                                    System.out.println("Tipo: "+ arrayAnimal.get(i).getTipoAnimal()); 
-                                    System.out.println("Peso: "+ arrayAnimal.get(i).getPesoAnimal());
-                                    System.out.println("Vacinado: "+ arrayAnimal.get(i).getVacina());
-                                    System.out.println("Idade: "+ arrayAnimal.get(i).getIdadeAnimal());
-                                }
-                            }
-
+                           System.out.println("Animais cadastrados ate o momento:");
+                           for (int i=0; i < cA.listar().size(); i++) {
+                        	   System.out.print("ID: " + cA.listar().get(i).getIdAnimal() + " Nome: ");
+                        	   System.out.print(cA.listar().get(i).getNomeAnimal() + " Idade: ");
+                        	   System.out.print(cA.listar().get(i).getIdadeAnimal() + " Tipo: ");
+                        	   System.out.print(cA.listar().get(i).getTipoAnimal() + " Peso: ");
+                        	   System.out.println(cA.listar().get(i).getPesoAnimal());
+                        	   
+                           };                       		                  
                             break;
                         case 4:
                         	System.out.println("Retornando ao menu principal");
@@ -559,8 +464,8 @@ case 8:
 default:
 	System.out.println("Opcao invalida, digite a opcao correta!");
 	break;
-            }
-        } while (op != 5);
+            }        
+    } while (op != 5);
     }
 }
     

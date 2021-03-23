@@ -1,4 +1,4 @@
-package controller;
+package persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Connect {
-    	
+    	//Para Configurar ao postgres basta alterar as config e descomentar USUARIO E SENHA
 		private static String DRIVE = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		private static String URL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=db_RanchControl;user=sa;password=123";
 		//private static String USUARIO = "sa";

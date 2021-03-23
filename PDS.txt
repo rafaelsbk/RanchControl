@@ -1,0 +1,21 @@
+IMPLEMENTAR:
+- Adicionar baia ao animal: PENDENTE
+- Ver os animais na baia: PENDENTE
+- Transferencias de animais de baia para baia: PENDENTE
+- Ver responsavel pelo animais (por conta da baia): PENDENTE
+- Implementar classes DAO
+	- ANIMAIS: - CREATE: OK
+		   - READ: OK
+		   - UPDATE: 
+		   - DELETE:
+
+	- Baias:   - CREATE: OK
+		   - READ:
+		   - UPDATE:
+		   - DELETE:
+	
+	- Funcionarios: - CREATE:
+		   	- READ:
+		   	- UPDATE:
+		   	- DELETE:
+
