@@ -7,6 +7,7 @@ import model.Baias;
 import model.Funcionario;
 import persistence.AnimalDAO; 
 import persistence.BaiasDAO;
+import persistence.FuncionariosDAO;
 
 public class Main {
 
@@ -23,8 +24,10 @@ public class Main {
         boolean buscador;
         Animal  c;
         Baias b;
+        Funcionario f;
         AnimalDAO cA = new AnimalDAO();
         BaiasDAO bA = new BaiasDAO();
+        FuncionariosDAO fA = new FuncionariosDAO();
         String nomeTeste;
         
         do {
@@ -36,8 +39,8 @@ public class Main {
             System.out.println("2 - Editar / Alterar");
             System.out.println("3 - Consultar informacoes");
             System.out.println("4 - Excluir / Apagar");
-            System.out.println("5 - Administraçao de Baias");
-            System.out.println("6 - Administraçao de Animais");
+            System.out.println("5 - Administraï¿½ao de Baias");
+            System.out.println("6 - Administraï¿½ao de Animais");
             System.out.println("7 - SAIR");
             System.out.println("-----------------------------------");
             System.out.println("Escolha a opcao desejada: ");
@@ -55,30 +58,14 @@ case 1:
                     switch (opSec) {
                         case 1: // Cadastro do funcionario
                         	buscador = false;
-                        	Funcionario f1 = new Funcionario();
-                            System.out.println("Digite o nome do funcionario");
-                            f1.setNome(teclado.next());
-                            nomeTeste = f1.getNome();                            	
-            				if(!arrayFuncionarios.isEmpty()) {
-            					for(int i=0; i<arrayFuncionarios.size(); i++) {
-            						if(arrayFuncionarios.get(i).getNome().equals(nomeTeste)) {
-            							buscador = true;
-            						}
-            					}
-            				}
-            				if(buscador) {
-            					System.out.println("Funcionario com esse nome ja cadastrado "+nomeTeste);
-            					System.out.println("Retornando para o menu inicial...");
-            					break;
-            				} 
-            				
+                        	f = new Funcionario();
+                        	System.out.println("Digite o nome do funcionario");
+                            f.setNome(teclado.next());
+                            
                             System.out.println("Qual a funcao?");
-                            f1.setFuncao(teclado.next());
+                            f.setFuncao(teclado.next());
 
-                            f1.setIdFuncionario(arrayFuncionarios.size());
-                            arrayFuncionarios.add(f1);
-                            System.out.println("Funcionario cadastrado com sucesso!");
-
+                            fA.adicionar(f);                        
                             break;
 
                         case 2:// Cadastro da baia                        	
@@ -136,46 +123,27 @@ case 2:
 
                     switch (opSec) {
                         case 1: // Editar funcionario
+                        	f = new Funcionario();
                             System.out.println("Digite o id do Funcionario que voce deseja editar");
 
                             System.out.println("Usuarios cadastros ate o momento:");
-                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                System.out.print(" - " + arrayFuncionarios.get(i).getNome() + "   id: ");
-                                System.out.println(arrayFuncionarios.get(i).getIdFuncionario());
-                                System.out.println("Funcao: " +arrayFuncionarios.get(i).getFuncao());
+                            for (int i = 0; i < fA.listar().size(); i++) {
+                                System.out.print(" - " + fA.listar().get(i).getNome() + "   id: ");
+                                System.out.println(fA.listar().get(i).getIdFuncionario());
+                                System.out.println("Funcao: " +fA.listar().get(i).getFuncao());
                             }
                             System.out.println("Diga o Id do funcionario que deseja editar:");
                             tempId = teclado.nextInt();
-
-                            System.out.println("-------------------------------");
-                            System.out.println("O que deseja editar?");
-                            System.out.println("1- Nome do funcionario");
-                            System.out.println("2- Funcao do funcionario");
-                            opEdit = teclado.nextInt();
-                            switch (opEdit) {
-                            	case 1:
-                                    System.out.println("Digite o nome do usuario");
-                                    for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                        if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
-                                            String tempEdit1 = teclado.next();
-                                            arrayFuncionarios.get(i).setNome(tempEdit1);
-                                        }
-                                    }
-                                    break;
-
-                                case 2:
-                                    System.out.println("Digite a funcao do usuario");
-                                    for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                        if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
-                                            String tempEdit2 = teclado.next();
-                                            arrayFuncionarios.get(i).setFuncao(tempEdit2);
-                                        }
-                                    }
-                                    break;
-                            }
-                                default:
-                                	System.out.println("Digite a opçao correta, Tente novamente!");
-                                    break;                           
+                            f.setIdFuncionario(tempId);
+                        	System.out.println("Qual o nome do funcionario?");
+                            f.setNome(teclado.next());
+                            
+                            System.out.println("Qual a funcao?");
+                            f.setFuncao(teclado.next());         
+                      
+                            fA.alterar(f);                        
+                            
+                            break;
                                     
                         case 2:// Editar da baia
                         	b = new Baias();
@@ -254,18 +222,19 @@ case 3:
                         case 1: // Consultar funcionario
 
                             System.out.println("Usuarios cadastros ate o momento:");
-                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                            	System.out.println("ID: " + arrayFuncionarios.get(i).getIdFuncionario());
-                                System.out.println("Nome: " + arrayFuncionarios.get(i).getNome());
+                            for (int i = 0; i < fA.listar().size(); i++) {
+                                System.out.print(" - " + fA.listar().get(i).getNome() + "   id: ");
+                                System.out.println(fA.listar().get(i).getIdFuncionario());
+                                System.out.println("Funcao: " +fA.listar().get(i).getFuncao());
                             }
                             System.out.println("Diga o Id do funcionario que deseja consultar:");
                             tempId = teclado.nextInt();
                             
-                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
-                                	 System.out.println("ID: " + arrayFuncionarios.get(i).getIdFuncionario());
-                                	 System.out.println("Nome: " + arrayFuncionarios.get(i).getNome());
-                                     System.out.println("Funcao: " +arrayFuncionarios.get(i).getFuncao());
+                            for (int i = 0; i < fA.listar().size(); i++) {
+                                if (fA.listar().get(i).getIdFuncionario() == tempId) {
+                                	 System.out.println("ID: " + fA.listar().get(i).getIdFuncionario());
+                                	 System.out.println("Nome: " + fA.listar().get(i).getNome());
+                                     System.out.println("Funcao: " +fA.listar().get(i).getFuncao());
                                 }
                             }
 
@@ -325,22 +294,19 @@ case 4:
 
                     switch (opSec) {
                         case 1: // Excluir funcionario
+                        	f = new Funcionario();
                             System.out.println("Digite o id do Funcionario que voce deseja excluir");
 
                             System.out.println("UsuÃ¡rios cadastros ate o momento:");
-                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                System.out.print(arrayFuncionarios.get(i).getNome() + "   id: ");
-                                System.out.println(arrayFuncionarios.get(i).getIdFuncionario());
+                            for (int i = 0; i < fA.listar().size(); i++) {
+                                System.out.print(fA.listar().get(i).getNome() + "   id: ");
+                                System.out.println(fA.listar().get(i).getIdFuncionario());
                             }
                             System.out.println("Diga o Id do funcionario que deseja excluir:");
                             tempId = teclado.nextInt();
 
-                            for (int i = 0; i < arrayFuncionarios.size(); i++) {
-                                if (arrayFuncionarios.get(i).getIdFuncionario() == tempId) {
-                                    arrayFuncionarios.remove(i);
-                                }
-                            }
-
+                            f.setIdFuncionario(tempId);
+                            fA.remover(f);
                             break;
 
                         case 2:// Excluir baia
@@ -384,7 +350,7 @@ case 4:
 
                     break;
 case 5:
-					System.out.println("---- Administraçao de Baias ----");
+					System.out.println("---- Administraï¿½ao de Baias ----");
 					System.out.println("1 - Inserir animais na baia.");
                     System.out.println("2 - Trocar baia do animal.");
                     System.out.println("3 - Retirar animal da baia.");
