@@ -8,17 +8,15 @@ import java.sql.SQLException;
 
 public class Connect {
     	//Para Configurar ao postgres basta alterar as config e descomentar USUARIO E SENHA
-		//private static String DRIVE = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		//private static String URL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=db_RanchControl;user=sa;password=123";
-		private static String DRIVE = "org.postgresql.Driver";
-		private static String URL = "jdbc:postgresql://127.0.0.1:5432/db_ranchcontrol";
-		private static String USUARIO = "postgres";
- 		private static String SENHA = "123";
+		private static String DRIVE = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		private static String URL = "jdbc:sqlserver://127.0.0.1:1433;databaseName=db_RanchControl;user=sa;password=123";
+		//private static String USUARIO = "sa";
+ 		//private static String SENHA = "123";
 
  		public static Connection getConnetion() {
 			try {
 				Class.forName(DRIVE);
-				return DriverManager.getConnection(URL, USUARIO, SENHA);
+				return DriverManager.getConnection(URL);
 			} catch (ClassNotFoundException | SQLException ErroSql) {
 				throw new RuntimeException("ERRO! Nao conectou! "+ErroSql);
 			}

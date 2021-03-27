@@ -6,45 +6,29 @@ public class Animal {
 	private String nomeAnimal;
 	private int idadeAnimal;
 	private float pesoAnimal;
-	private float peso2;
-	private float peso3;
-	private float peso4;
-	private float peso5;
 	private String vacina;
+	private int idBaiaPertence;
+	private String nomeBaiaPertence;
 	
 
+	public String getNomeBaiaPertence() {
+		return nomeBaiaPertence;
+	}
+	public void setNomeBaiaPertence(String nomeBaiaPertence) {
+		this.nomeBaiaPertence = nomeBaiaPertence;
+	}
+	public int getIdBaiaPertence() {
+		return idBaiaPertence;
+	}
+	public void setIdBaiaPertence(int idBaiaPertence) {
+		this.idBaiaPertence = idBaiaPertence;
+	}
 	public float getPesoAnimal() {
 		return pesoAnimal;
 	}
 	public void setPesoAnimal(float pesoAnimal) {
 		this.pesoAnimal = pesoAnimal;
 	}
-	public float getPeso2() {
-		return peso2;
-	}
-	public void setPeso2(float peso2) {
-		this.peso2 = peso2;
-	}
-	public float getPeso3() {
-		return peso3;
-	}
-	public void setPeso3(float peso3) {
-		this.peso3 = peso3;
-	}
-	public float getPeso4() {
-		return peso4;
-	}
-	public void setPeso4(float peso4) {
-		this.peso4 = peso4;
-	}
-	public float getPeso5() {
-		return peso5;
-	}
-	public void setPeso5(float peso5) {
-		this.peso5 = peso5;
-	}
-	private String observacoes;
-	private float mediaPeso;
 	
 	public int getIdAnimal() {
 		return idAnimal;
@@ -76,18 +60,6 @@ public class Animal {
 	public void setVacina(String vacina) {
 		this.vacina = vacina;
 	}
-	public String getObservacoes() {
-		return observacoes;
-	}
-	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
-	}
-	public float getMediaPeso() {
-		return mediaPeso;
-	}
-	public void setMediaPeso(float mediaPeso) {
-		this.mediaPeso = mediaPeso;
-	}
-	
+
 }
  

@@ -7,6 +7,14 @@ public class Baias {
 	private int capacidade;
 	private String definicao;
 	private int idFuncionarioResponsavel;
+	private String nomeFuncionario;
+	public String getNomeFuncionario() {
+		return nomeFuncionario;
+	}
+	public void setNomeFuncionario(String nomeFuncionario) {
+		this.nomeFuncionario = nomeFuncionario;
+	}
+
 	private int idAnimalBaia;
 	private Animal animal;
 	
